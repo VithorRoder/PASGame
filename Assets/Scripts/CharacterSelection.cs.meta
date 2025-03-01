@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b71589ff5df9a504dac0a9ac25a08bbc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - imagem: {instanceID: 0}
+  - boneco01Sprite: {fileID: 21300000, guid: 19518b8c8cae31047bc4a196fbcbcda8, type: 3}
+  - boneco02Sprite: {fileID: 21300000, guid: b4f17faa707ae5d49b948ce059ea9ad6, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
