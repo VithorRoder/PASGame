@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 2544244259882422011}
   - component: {fileID: 2770174553569953096}
   - component: {fileID: 440273519526208566}
+  - component: {fileID: 6721198769371611249}
   m_Layer: 0
   m_Name: CharacterGreen
   m_TagString: CharacterGreen
@@ -433,6 +434,7 @@ MonoBehaviour:
   sr: {fileID: 712380100397466840}
   rb: {fileID: 8380869569616975725}
   smoothTime: 0.07
+  padCanvasPrefab: {fileID: 6314814581272521730, guid: 07badd56ba3d43b4fbc3833a398db42e, type: 3}
 --- !u!114 &440273519526208566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +451,36 @@ MonoBehaviour:
   health: 100
   maxHealth: 0
   pvv: {fileID: 2544244259882422011}
+--- !u!114 &6721198769371611249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232080944483159396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5f92b7040a72dec408afdf99b1f08b46, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1637637158696647435
 GameObject:
   m_ObjectHideFlags: 0

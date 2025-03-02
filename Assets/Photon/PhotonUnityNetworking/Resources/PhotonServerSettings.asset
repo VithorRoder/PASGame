@@ -60,6 +60,8 @@ MonoBehaviour:
   - OnTriggerEnter2D
   - HandleCollision
   - SetVelocity
+  - UpdateHealth
+  - Die
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

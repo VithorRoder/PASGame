@@ -598,6 +598,7 @@ GameObject:
   - component: {fileID: 260805459919945081}
   - component: {fileID: 3696097852749327403}
   - component: {fileID: 2580393123029834988}
+  - component: {fileID: 1543632201187817441}
   m_Layer: 0
   m_Name: CharacterYellow
   m_TagString: CharacterYellow
@@ -799,6 +800,36 @@ MonoBehaviour:
   health: 100
   maxHealth: 0
   pvv: {fileID: 260805459919945081}
+--- !u!114 &1543632201187817441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656633170566858327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5f92b7040a72dec408afdf99b1f08b46, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7446087268419452941
 GameObject:
   m_ObjectHideFlags: 0

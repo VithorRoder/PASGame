@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-using System;
+using UnityEngine.InputSystem;
 
 public class MyPlayer : MonoBehaviourPun, IPunObservable
 {
-
     public PhotonView pv;
     public float moveSpeed = 400;
     public float jumpforce = 600;
@@ -19,6 +18,9 @@ public class MyPlayer : MonoBehaviourPun, IPunObservable
     private bool IsGrounded;
     private Vector3 velocity = Vector3.zero;
     public float smoothTime = 0.07f;
+    private PlayerControls controls;
+    private Vector2 moveInput;
+
 
     void Start()
     {
@@ -27,14 +29,23 @@ public class MyPlayer : MonoBehaviourPun, IPunObservable
             nameText.text = PhotonNetwork.NickName;
             rb = GetComponent<Rigidbody2D>();
             sceneCamera = GameObject.Find("Main Camera");
-
             sceneCamera.SetActive(true);
+
+            controls = new PlayerControls();
+            controls.Enable();
+
+            if (Application.isMobilePlatform)
+            {
+                controls.PlayerMovement.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+                controls.PlayerMovement.Movement.canceled += ctx => moveInput = Vector2.zero;
+            }
         }
         else
         {
             nameText.text = pv.Owner.NickName;
         }
     }
+
     void Update()
     {
         if (photonView.IsMine)
@@ -54,31 +65,36 @@ public class MyPlayer : MonoBehaviourPun, IPunObservable
 
     private void ProcessInputs()
     {
-        var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        transform.position += move * moveSpeed * Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Application.isMobilePlatform)
         {
-            pv.RPC("OnDirectionChange_RIGHT", RpcTarget.Others);
+            Vector2 move = moveInput;
+            smoothMove = new Vector3(move.x, move.y, 0) * moveSpeed * Time.deltaTime;
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else
         {
-            pv.RPC("OnDirectionChange_LEFT", RpcTarget.Others);
-        }
+            Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            smoothMove = new Vector3(move.x, move.y, 0) * moveSpeed * Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            pv.RPC("OnDirectionChange_UP", RpcTarget.Others);
-        }
+            if (move.x > 0)
+            {
+                pv.RPC("OnDirectionChange_RIGHT", RpcTarget.Others);
+            }
+            else if (move.x < 0)
+            {
+                pv.RPC("OnDirectionChange_LEFT", RpcTarget.Others);
+            }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            pv.RPC("OnDirectionChange_DOWN", RpcTarget.Others);
+            if (move.y > 0)
+            {
+                pv.RPC("OnDirectionChange_UP", RpcTarget.Others);
+            }
+            else if (move.y < 0)
+            {
+                pv.RPC("OnDirectionChange_DOWN", RpcTarget.Others);
+            }
         }
-
+        transform.position += smoothMove;
     }
-
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -102,7 +118,6 @@ public class MyPlayer : MonoBehaviourPun, IPunObservable
         }
     }
 
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -113,6 +128,5 @@ public class MyPlayer : MonoBehaviourPun, IPunObservable
         {
             smoothMove = (Vector3)stream.ReceiveNext();
         }
-
     }
 }

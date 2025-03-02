@@ -16,18 +16,11 @@ public class PlayerHealth : MonoBehaviourPun
         Initialize(100f);
     }
 
-    [PunRPC]
-    public void UpdateHealthUI(float currentHealth, float maxHealth)
-    {
-        health = currentHealth;
-        maxHealth = maxHealth;
-        healthBall.fillAmount = Mathf.Clamp(GetCurrentHealth() / GetMaxHealth(), 0, 1);
-    }
-
     public void Initialize(float initialHealth)
     {
         maxHealth = initialHealth;
         health = maxHealth;
+        UpdateHealthUI();
     }
 
     [PunRPC]
@@ -38,29 +31,33 @@ public class PlayerHealth : MonoBehaviourPun
         health -= amount;
         health = Mathf.Clamp(health, 0, maxHealth);
 
+        photonView.RPC("UpdateHealth", RpcTarget.All, health);
+
         if (health <= 0)
         {
-            Die();
+            photonView.RPC("Die", RpcTarget.AllBuffered);
         }
     }
 
+    [PunRPC]
+    private void UpdateHealth(float newHealth)
+    {
+        health = newHealth;
+        UpdateHealthUI();
+    }
+
+    private void UpdateHealthUI()
+    {
+        healthBall.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+    }
+
+    [PunRPC]
     private void Die()
     {
-        if (!photonView.IsMine) return;
-
-        PhotonNetwork.Destroy(gameObject);
-
-        PhotonNetwork.LoadLevel(2);
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.LoadLevel(2);
+        }
     }
-
-    public float GetCurrentHealth()
-    {
-        return health;
-    }
-
-    public float GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
 }
