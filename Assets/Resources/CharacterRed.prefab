@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 920409548924615930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 231, y: 204, z: 0}
+  m_LocalPosition: {x: 231, y: 204, z: -10}
   m_LocalScale: {x: 150, y: 150, z: 356.9726}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -201,7 +201,6 @@ MonoBehaviour:
   sr: {fileID: 7151540595303358582}
   rb: {fileID: 8888388943148170667}
   smoothTime: 0.07
-  padCanvasPrefab: {fileID: 6314814581272521730, guid: 07badd56ba3d43b4fbc3833a398db42e, type: 3}
 --- !u!114 &7700504935094855089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,6 +892,7 @@ MonoBehaviour:
   timeBFire: 0.5
   force: 1300
   pv: {fileID: 1180171605097584862}
+  rightStick: {fileID: 0}
 --- !u!114 &1180171605097584862
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,8 +26,6 @@ public class PlayerHealth : MonoBehaviourPun
     [PunRPC]
     public void ReduceHealth(float amount)
     {
-        if (!photonView.IsMine) return;
-
         health -= amount;
         health = Mathf.Clamp(health, 0, maxHealth);
 
@@ -38,6 +36,7 @@ public class PlayerHealth : MonoBehaviourPun
             photonView.RPC("Die", RpcTarget.AllBuffered);
         }
     }
+
 
     [PunRPC]
     private void UpdateHealth(float newHealth)

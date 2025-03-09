@@ -157,11 +157,10 @@ public class BulletScript : MonoBehaviourPun
     void DamagePlayer(GameObject player)
     {
         PlayerHealth ph = player.GetComponent<PlayerHealth>();
-        if (ph != null)
+
+        if (ph != null && ph.photonView.IsMine)
         {
-            ph.photonView.RPC("ReduceHealth", RpcTarget.AllBuffered, damage);
-            ph.photonView.RPC("UpdateHealthUI", RpcTarget.AllBuffered, ph.health, ph.maxHealth);
+            ph.ReduceHealth(damage);
         }
     }
-
 }

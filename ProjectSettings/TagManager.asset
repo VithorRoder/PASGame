@@ -18,6 +18,8 @@ TagManager:
   - CharacterGreen
   - CharacterYellow
   - CharacterWhite
+  - Bullet
+  - RightStick
   layers:
   - Default
   - TransparentFX
