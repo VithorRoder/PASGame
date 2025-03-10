@@ -52,6 +52,7 @@ public class Shooting : MonoBehaviourPunCallbacks
         }
     }
 
+
     void HandleMouseShooting()
     {
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -84,13 +85,13 @@ public class Shooting : MonoBehaviourPunCallbacks
                 float smoothRotation = Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, targetRotZ, ref currentVelocity, 0.1f);
                 transform.rotation = Quaternion.Euler(0, 0, smoothRotation);
 
-                if (Vector3.Distance(lastRotation, shootDirection) > 0.15f)
+                if (photonView.IsMine)
                 {
                     lastRotation = shootDirection;
                     photonView.RPC("SyncRotation", RpcTarget.All, smoothRotation);
                 }
 
-                Vector3 aimPosition = bulletTransform.position + (Vector3)shootDirection * 1.2f;
+                Vector3 aimPosition = bulletTransform.position + (Vector3)shootDirection * 1f;
 
                 if (canFire)
                 {
@@ -111,7 +112,7 @@ public class Shooting : MonoBehaviourPunCallbacks
     void ShootBullet(float rotZ, Vector3 targetPosition, Vector2 shootDirection)
     {
         GameObject newBullet = Instantiate(bulletPrefab, bulletTransform.position, Quaternion.Euler(0, 0, rotZ));
-        newBullet.GetComponent<Rigidbody2D>().velocity = shootDirection * force;
+        newBullet.GetComponent<Rigidbody2D>().linearVelocity = shootDirection * force;
 
         photonView.RPC("NetworkShootBullet", RpcTarget.Others, newBullet.transform.position, shootDirection * force);
     }
@@ -120,7 +121,7 @@ public class Shooting : MonoBehaviourPunCallbacks
     void NetworkShootBullet(Vector3 position, Vector2 velocity)
     {
         GameObject newBullet = Instantiate(bulletPrefab, position, Quaternion.identity);
-        newBullet.GetComponent<Rigidbody2D>().velocity = velocity;
+        newBullet.GetComponent<Rigidbody2D>().linearVelocity = velocity;
     }
 
     bool IsMobile()

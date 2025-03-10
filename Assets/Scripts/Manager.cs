@@ -12,7 +12,7 @@ public class Manager : MonoBehaviour
 
     void Start()
     {
-        characterSelection = FindObjectOfType<CharacterSelection>();
+        characterSelection = FindFirstObjectByType<CharacterSelection>();
         SpawnPlayer();
     }
 

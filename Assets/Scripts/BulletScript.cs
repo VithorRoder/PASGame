@@ -40,7 +40,7 @@ public class BulletScript : MonoBehaviourPun
     {
         if (photonView.IsMine)
         {
-            rb.velocity = transform.up;
+            rb.linearVelocity = transform.up;
         }
     }
 
