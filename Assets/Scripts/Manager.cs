@@ -14,6 +14,7 @@ public class Manager : MonoBehaviour
     {
         characterSelection = FindFirstObjectByType<CharacterSelection>();
         SpawnPlayer();
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 
     void SpawnPlayer()

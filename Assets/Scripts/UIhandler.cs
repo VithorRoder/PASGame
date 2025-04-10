@@ -12,6 +12,7 @@ public class UIhandler : MonoBehaviourPunCallbacks
     public GameObject joiningRoom;
     public GameObject creatingRoom;
     public GameObject failedFindRoom;
+    public GameObject waitingRoom;
 
     public void OnClick_JoinRoom()
     {
@@ -46,7 +47,7 @@ public class UIhandler : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         print("Room Joined Successfully !");
-        PhotonNetwork.LoadLevel(1);
+        waitingRoom.SetActive(true);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

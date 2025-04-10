@@ -112,9 +112,9 @@ public class Shooting : MonoBehaviourPunCallbacks
     void ShootBullet(float rotZ, Vector3 targetPosition, Vector2 shootDirection)
     {
         GameObject newBullet = Instantiate(bulletPrefab, bulletTransform.position, Quaternion.Euler(0, 0, rotZ));
-        newBullet.GetComponent<Rigidbody2D>().linearVelocity = shootDirection * force;
-
-        photonView.RPC("NetworkShootBullet", RpcTarget.Others, newBullet.transform.position, shootDirection * force);
+        Vector2 bulletVelocity = shootDirection.normalized * force;
+        newBullet.GetComponent<Rigidbody2D>().linearVelocity = bulletVelocity;
+        photonView.RPC("NetworkShootBullet", RpcTarget.Others, newBullet.transform.position, bulletVelocity);
     }
 
     [PunRPC]

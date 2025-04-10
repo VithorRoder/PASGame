@@ -21,6 +21,7 @@ public class Launcher : MonoBehaviourPunCallbacks
   {
     Connecting.SetActive(true);
     PhotonNetwork.ConnectUsingSettings();
+    PhotonNetwork.AutomaticallySyncScene = true;
   }
 
   public override void OnConnectedToMaster()

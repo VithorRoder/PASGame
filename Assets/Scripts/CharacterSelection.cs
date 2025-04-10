@@ -15,4 +15,3 @@ public class CharacterSelection : MonoBehaviour
         textFieldCharacterName.text = characterNames[index];
     }
 }
-
