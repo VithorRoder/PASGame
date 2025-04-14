@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterSelectionButton : MonoBehaviour
 {
-    public bool isNextButton; 
+    public bool isNextButton;
     private CharacterSelection attIndexScript;
 
     private void Start()
@@ -34,6 +34,15 @@ public class CharacterSelectionButton : MonoBehaviour
             }
 
             attIndexScript.UpdateCharacter(attIndexScript.currentIndex);
+        }
+    }
+
+    public void OnSelectConfirmClick()
+    {
+        if (attIndexScript != null)
+        {
+            attIndexScript.UpdateCharacter(attIndexScript.currentIndex);
+            Debug.Log("Personagem confirmado: " + attIndexScript.currentIndex);
         }
     }
 }

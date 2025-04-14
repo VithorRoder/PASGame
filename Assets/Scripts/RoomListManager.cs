@@ -8,9 +8,14 @@ using UnityEngine.UI;
 public class RoomListManager : MonoBehaviourPunCallbacks
 {
     public Transform roomListContent;
-    public GameObject roomButtonPrefab; 
+    public GameObject roomButtonPrefab;
+    private List<GameObject> roomButtons = new List<GameObject>();
+    private UIhandler uiHandler;
 
-    private List<GameObject> roomButtons = new List<GameObject>(); 
+    void Start()
+    {
+        uiHandler = FindObjectOfType<UIhandler>();
+    }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -22,7 +27,7 @@ public class RoomListManager : MonoBehaviourPunCallbacks
 
         foreach (RoomInfo room in roomList)
         {
-            if (!room.RemovedFromList) 
+            if (!room.RemovedFromList)
             {
                 GameObject roomButton = Instantiate(roomButtonPrefab, roomListContent);
 
@@ -42,6 +47,9 @@ public class RoomListManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom(string roomName)
     {
+        if (uiHandler != null && !uiHandler.ValidateSelection())
+            return;
+
         PhotonNetwork.JoinRoom(roomName);
     }
 }
