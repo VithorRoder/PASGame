@@ -34,7 +34,18 @@ public class UIhandler : MonoBehaviourPunCallbacks
         failedFindRoom.SetActive(false);
         joiningRoom.SetActive(false);
         creatingRoom.SetActive(true);
-        PhotonNetwork.CreateRoom(createRoomTF.text, new RoomOptions { MaxPlayers = 6 }, null);
+
+        ExitGames.Client.Photon.Hashtable customProps = new ExitGames.Client.Photon.Hashtable();
+        customProps["isStarted"] = false;
+
+        RoomOptions options = new RoomOptions
+        {
+            MaxPlayers = 6,
+            CustomRoomProperties = customProps,
+            CustomRoomPropertiesForLobby = new string[] { "isStarted" }
+        };
+
+        PhotonNetwork.CreateRoom(createRoomTF.text, options);
     }
 
     private IEnumerator WaitForJoin()
@@ -51,7 +62,14 @@ public class UIhandler : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Room Joined Successfully!");
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("isStarted") &&
+            (bool)PhotonNetwork.CurrentRoom.CustomProperties["isStarted"] == true)
+        {
+            PhotonNetwork.LeaveRoom();
+            ShowWarning("Essa sala já começou, tente outra.");
+            return;
+        }
+
         waitingRoom.SetActive(true);
     }
 

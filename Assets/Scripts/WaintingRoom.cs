@@ -35,6 +35,10 @@ public class WaitingRoomManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            ExitGames.Client.Photon.Hashtable roomProps = new ExitGames.Client.Photon.Hashtable();
+            roomProps["isStarted"] = true;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
+
             PhotonNetwork.LoadLevel(1);
         }
     }

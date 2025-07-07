@@ -6793,8 +6793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e3fe5464477e74890b46e8fc34a914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomListContent: {fileID: 1662033838}
   roomButtonPrefab: {fileID: 3081767601647967726, guid: e299f0ae933584949b169a510a5ae16e, type: 3}
+  waitingRoomListContent: {fileID: 1662033838}
+  playingRoomListContent: {fileID: 2078112102}
 --- !u!1 &1604151744
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,8 +7640,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e3fe5464477e74890b46e8fc34a914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomListContent: {fileID: 2078112102}
   roomButtonPrefab: {fileID: 3081767601647967726, guid: e299f0ae933584949b169a510a5ae16e, type: 3}
+  waitingRoomListContent: {fileID: 1662033838}
+  playingRoomListContent: {fileID: 2078112102}
 --- !u!114 &1778273558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8568,7 +8570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2003035399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9342,7 +9344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2104486246
 RectTransform:
   m_ObjectHideFlags: 0
