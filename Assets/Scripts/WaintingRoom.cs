@@ -28,6 +28,7 @@ public class WaitingRoomManager : MonoBehaviourPunCallbacks
         {
             roomNameText.text = "Sala: " + PhotonNetwork.CurrentRoom.Name;
         }
+        startButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
         UpdatePlayerListUI();
     }
 
@@ -69,11 +70,13 @@ public class WaitingRoomManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        startButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
         UpdatePlayerListUI();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        startButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
         UpdatePlayerListUI();
     }
 
