@@ -1,5 +1,14 @@
 # 🎮 Point & Shoot Multiplayer 2D
 
+<br>
+<div align="center">
+  <a href="https://pasgame.netlify.app/">
+    <img src="https://img.shields.io/badge/🌐%20JOGAR%20AGORA-000?style=for-the-badge&logo=unity&logoColor=white" 
+         alt="Jogar Agora" width="280"/>
+  </a>
+</div>
+<br>
+
 Um jogo **multiplayer 2D** desenvolvido em **Unity** com **Photon PUN2**, onde cada jogador controla um personagem com mira livre e dinâmica.  
 Focado em **Desktop** mas totalmente jogável em **Mobile** com touchpad de movimento e mira.
 
