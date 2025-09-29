@@ -1,4 +1,4 @@
-# 🎮 Point & Shoot Multiplayer 2D
+# 🎮 Point and Shoot Multiplayer 2D
 
 <br>
 <div align="center">
