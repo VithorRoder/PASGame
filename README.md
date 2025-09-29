@@ -26,10 +26,9 @@ Focado em **Desktop** mas totalmente jogável em **Mobile** com touchpad de movi
 ---
 
 ## 🛠️ Tecnologias Usadas
-- **Unity Engine** (2022.x)  
+- **Unity Engine** (6.2)  
 - **Photon PUN 2** (multiplayer)  
 - **C#** (lógica do jogo)  
-- **PixelOver** (animações em pixel art)  
 - **Unity Input System** (gerenciamento de inputs mobile/desktop)
 
 ---
