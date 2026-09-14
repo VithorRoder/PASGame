@@ -74,24 +74,6 @@ public class MyPlayer : MonoBehaviourPun, IPunObservable
         {
             Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             smoothMove = new Vector3(move.x, move.y, 0) * moveSpeed * Time.deltaTime;
-
-            if (move.x > 0)
-            {
-                pv.RPC("OnDirectionChange_RIGHT", RpcTarget.Others);
-            }
-            else if (move.x < 0)
-            {
-                pv.RPC("OnDirectionChange_LEFT", RpcTarget.Others);
-            }
-
-            if (move.y > 0)
-            {
-                pv.RPC("OnDirectionChange_UP", RpcTarget.Others);
-            }
-            else if (move.y < 0)
-            {
-                pv.RPC("OnDirectionChange_DOWN", RpcTarget.Others);
-            }
         }
         transform.position += smoothMove;
     }

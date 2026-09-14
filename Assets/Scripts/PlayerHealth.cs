@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 public class PlayerHealth : MonoBehaviourPun
@@ -56,7 +57,9 @@ public class PlayerHealth : MonoBehaviourPun
         if (photonView.IsMine)
         {
             PhotonNetwork.Destroy(gameObject);
-            PhotonNetwork.LoadLevel(2);
+            // Additive + local (not PhotonNetwork.LoadLevel) so GameScene keeps running behind
+            // the death screen — the dead player can still watch the remaining players fight.
+            SceneManager.LoadScene("DieScene", LoadSceneMode.Additive);
         }
     }
 }
